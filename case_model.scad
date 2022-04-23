@@ -55,12 +55,19 @@ module Case() {
 }
 
 module KeyaboardKeys() {
-    
     offsetLeft = 1; // 1mm
     offsetTop = 2; // 2mm
     vSpace = 3; // 3mm
     hSpace = 3.5; // 3.5mm
     switchSize = 6; // 6mm
+    
+    labelIndex = 0;
+    labels = [
+        ["<", "9", "8", "7"],
+        ["-", "6", "5", "4"],
+        ["", "3", "2", "1"],
+        ["=", "", "0", ""]
+    ];
     
     for (y = [0:3]) {
         for (x = [0:3]) {       
@@ -69,9 +76,23 @@ module KeyaboardKeys() {
                 2.5 + (switchSize + hSpace) * y, 
                 -0.5]
             ) {
-                cube([5, 5, 2]);
-                translate([1.5, 0, 1]) {
-                    cube([2, 7, 1]);
+                difference() {
+                    {
+                        if (labels[y][x] == "") {
+                            translate([-1, -1, 0]) {
+                                cube([8, 8, 2]);
+                            }
+                        } else {
+                            cube([5, 5, 2]);
+                            translate([1.5, 0, 1]) {
+                                cube([2, 7, 1]);
+                            }
+                        }
+                    }
+                    translate([3.5, 4, 1.5]) {
+                        rotate(180, [0,0,1])
+                        text(text = labels[y][x], size = 3);
+                    }
                 }
             }
         }
