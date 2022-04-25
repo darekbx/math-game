@@ -6,7 +6,7 @@ $fn = 100;
 
 showComponents = false;
 
-keyboardX = 3;
+keyboardX = 0;
 keyboardY = 40;
 
 displayX = 1;
@@ -49,14 +49,12 @@ module Case() {
     translate([displayX, displayY, 12]) {
         DisplayMountingBolts();
     }
-    translate([keyboardX, keyboardY, 16]) {
+    translate([keyboardX + 4.5, keyboardY, 16]) {
         KeyaboardKeys();
     }
 }
 
 module KeyaboardKeys() {
-    offsetLeft = 1; // 1mm
-    offsetTop = 2; // 2mm
     vSpace = 3; // 3mm
     hSpace = 3.5; // 3.5mm
     switchSize = 6; // 6mm
@@ -167,7 +165,7 @@ module KeyboardPlaceholder() {
             cube([width, height, thickness]);
         }
         
-        offsetLeft = 10; // 1mm
+        offsetLeft = 55; // 5.5mm
         offsetTop = 20; // 2mm
         vSpace = 30; // 3mm
         hSpace = 35; // 3.5mm
