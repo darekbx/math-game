@@ -31,7 +31,7 @@ if (showComponents) {
 module Case() {
     difference() {
         minkowski() {
-            sphere(2.5);
+            sphere(2.2);
             cube([42, 90, 15]);
         }
         {
@@ -44,13 +44,65 @@ module Case() {
             translate([keyboardX, keyboardY, 13]) {
                 KeyboardPlaceholder();
             }
+            translate([keyboardX, keyboardY, 10]) {
+                KeyboardPlaceholder();
+            }
         }
     }
     translate([displayX, displayY, 12]) {
         DisplayMountingBolts();
     }
-    translate([keyboardX + 4.5, keyboardY, 16]) {
+    translate([keyboardX + 4.5, keyboardY, 15.7]) {
         KeyaboardKeys();
+    }
+    KeyboardMounting();
+}
+
+module KeyboardMounting() {
+    // Front wall
+    translate([keyboardX - 2, keyboardY - 1.5, 8]) {
+        cube([46, 1.2, 8]);
+    }
+    // Back wall
+    translate([keyboardX - 2, keyboardY + 45, 8]) {
+        cube([46, 1.2, 8]);
+    }
+    
+    translate([keyboardX - 2, keyboardY - 0.5, 8]) {
+        Mounting1();
+    }
+    translate([keyboardX - 2, keyboardY + 40, 8]) {
+        Mounting1();
+    }
+    
+    translate([keyboardX + 40, keyboardY + 2, 8]) {
+        Mounting2();
+    }
+    translate([keyboardX + 40, keyboardY + 38, 8]) {
+        Mounting2();
+    }
+    
+    module Mounting1() {
+        cube([2, 5, 8]);
+        translate([1, 0, 0]) {
+            cube([2, 5, 2]);
+        }
+    }
+    
+    module Mounting2() {
+        cube([2, 5, 8]);
+        translate([-1, 0, 0]) {
+            difference() {
+                translate([-0.25, 0, 0]) {
+                    cube([2, 5, 2]);
+                }
+                translate([-2, -0.5, 0.25]){
+                    rotate([0, 45, 0]) {
+                        cube([3, 6, 2]);
+                    }
+                }
+            }
+        }
     }
 }
 
