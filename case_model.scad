@@ -26,8 +26,8 @@ difference() {
     Case();
     {
         if (noKeyboard) {
-            translate([-10, 40, -5]) {
-                cube([60, 110, 25]);
+            translate([-10, 38, -5]) {
+                cube([60, 80, 25]);
             }
         }
         if (noDisplay) {
@@ -36,6 +36,11 @@ difference() {
             }
             translate([-10, 86, -5]) {
                 cube([60, 30, 25]);
+            }
+        }
+        if (flat) {            
+            translate([-10, 86, 0]) {
+                cube([60, 20, 20]);
             }
         }
     }
@@ -78,12 +83,57 @@ module Case() {
     translate([displayX, displayY, 12]) {
         DisplayMountingBolts();
     }
+    translate([displayX, displayY, 12]) {
+        DisplayFrame();
+    }
     translate([keyboardX + 4.5, keyboardY, 15.7]) {
         if (!noKeys) {
-            KeyaboardKeys();
+            KeyboardKeys();
         }
     }
     KeyboardMounting();
+}
+
+module DisplayFrame() {
+    frameHeight = 10;
+    xPos = 30; // 2.5mm
+    yPos = 85; // 8mm
+    width = 350 - 20;
+    height = 230 - 20;
+        scale([0.1, 0.1, 0.1]) {
+            translate([xPos - 5, yPos - 5, 30]) {
+                
+                difference() {
+                    translate([0, 0, 0]) {
+                        rotate([90, 0, 0]) {
+                            translate([5, 12, -240]) {
+                                cylinder(h = 240, d = 20);
+                            }
+                            translate([355, 12, -240]) {
+                                cylinder(h = 240, d = 20);
+                            }
+                        }
+                        rotate([90, 0, 90]) {
+                            translate([5, 12, 5]) {
+                                cylinder(h = 350, d = 20);
+                            }
+                            translate([235, 12, 5]) {
+                                cylinder(h = 350, d = 20);
+                            }
+                        }
+                    }
+                    translate([-50, -20, -90]) {
+                        cube([500, 340, 100]);
+                    }
+                }
+                difference() {
+                    cube([width + 30, height + 30, frameHeight]);
+                    translate([15, 15, -40]) {
+                        cube([width, height, 80]);
+                    }
+                }
+            }
+    }
 }
 
 module KeyboardMounting() {
@@ -134,7 +184,7 @@ module KeyboardMounting() {
     }
 }
 
-module KeyaboardKeys() {
+module KeyboardKeys() {
     vSpace = 3; // 3mm
     hSpace = 3.5; // 3.5mm
     switchSize = 6; // 6mm
@@ -229,10 +279,6 @@ module DisplayPlaceholder() {
         translate([xPos, yPos, 20]) {
             color("black") {
                 cube([350, 230, 30]);
-                // Place for connection tape
-                translate([(350 - 120) / 2, 230 - 2, 0]) {
-                        cube([120, 40, 30]);
-                }
             }
         }
     }
