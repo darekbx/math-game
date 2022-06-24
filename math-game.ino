@@ -20,8 +20,8 @@
 #define SPLASH_TIME 1000
 #define SPLASH "Math Game"
  
-const byte rowPins[ROWS] = {5, 4, 3, 2};
-const byte colPins[COLS] = {6, 7, 8, 9};
+byte rowPins[ROWS] = {19, 18, 5, 17};
+byte colPins[COLS] = {16, 4, 0, 2};  
  
 char keys[ROWS][COLS] = {
   {'x','m','-','='},
@@ -31,7 +31,7 @@ char keys[ROWS][COLS] = {
 };
 
 Keypad keybrd = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
-U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, 19, 18, U8X8_PIN_NONE);
+U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, 22, 21, U8X8_PIN_NONE);
 
 EquationGenerator equationGenerator;
 EquationValidator equationValidator;
