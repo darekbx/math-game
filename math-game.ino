@@ -132,18 +132,6 @@ void handleButtons() {
     data.remove(data.length() - 1, 1);
   } else if (c == '=') {
     handleResult();
-  } else if (c == '-') {
-    if (data.length() == 0) {
-      data = '-'  ;
-    }
-  } else if (c == '<') {
-    if (level > 1) {
-      level--;
-    }
-  } else if (c == '>') {
-    if (level < MAX_LEVEL) {
-      level++;
-    }
   } else {
     data += String(c);
   }
