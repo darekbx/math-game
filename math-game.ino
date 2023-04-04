@@ -108,11 +108,6 @@ void gameScreen() {
     width = u8g2.getUTF8Width(summary.c_str());
     u8g2.drawStr((128 - width) / 2, 64, summary.c_str());
 
-    // Level summary
-    summary = "Level: " + String(level);
-    width = u8g2.getUTF8Width(summary.c_str());
-    u8g2.drawStr(128 - width - 2, 64, summary.c_str());
-    
     u8g2.drawLine(0, 52, 128, 52);
     
     u8g2.sendBuffer();
